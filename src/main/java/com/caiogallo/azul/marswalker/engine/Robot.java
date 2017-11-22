@@ -6,16 +6,22 @@ package com.caiogallo.azul.marswalker.engine;
  */
 public class Robot {
     public enum Direction{
-        NORTH(0), EAST(1), SOUTH(2), WEST(3);
+        NORTH(0, 'N'), EAST(1, 'E'), SOUTH(2, 'S'), WEST(3, 'W');
 
         private int value;
+        private char abbreviation;
 
-        Direction(int value) {
+        Direction(int value, char abbreviation) {
             this.value = value;
+            this.abbreviation = abbreviation;
         }
 
         public int getValue(){
             return this.value;
+        }
+
+        public char getAbbreviation() {
+            return this.abbreviation;
         }
 
         public static Direction fromInteger(int value){
@@ -76,5 +82,10 @@ public class Robot {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("(%d,%d,%c)", x, y, direction.getAbbreviation());
     }
 }
