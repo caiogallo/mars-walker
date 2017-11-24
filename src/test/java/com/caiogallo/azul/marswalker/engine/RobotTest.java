@@ -3,8 +3,7 @@ package com.caiogallo.azul.marswalker.engine;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.springframework.test.context.TestPropertySource;
 
 public class RobotTest {
     Robot robot;
@@ -109,4 +108,41 @@ public class RobotTest {
         Assert.assertEquals("(0,2,W)", robot.toString());
     }
 
+    @Test
+    public void testInvalidMinXPosition(){
+        robot.turn(Robot.Turn.LEFT);
+        robot.turn(Robot.Turn.LEFT);
+        boolean legalMove = robot.move();
+
+        Assert.assertEquals(false, legalMove);
+    }
+
+    @Test
+    public void testInvalidMaxXPosition(){
+        boolean legalMove = true;
+        for(int i = 0; i <= Terrain.MAX_X_DISTANCE; i++){
+            legalMove = robot.move();
+        }
+
+        Assert.assertEquals(false, legalMove);
+    }
+
+    @Test
+    public void testInvalidMinYPosition(){
+        robot.turn(Robot.Turn.LEFT);
+        boolean legalMove = robot.move();
+
+        Assert.assertEquals(false, legalMove);
+    }
+
+    @Test
+    public void testInvalidMaxYPosition(){
+        boolean legalMove = true;
+        robot.turn(Robot.Turn.RIGHT);
+        for(int i = 0; i <= Terrain.MAX_Y_DISTANCE; i++){
+            legalMove = robot.move();
+        }
+
+        Assert.assertEquals(false, legalMove);
+    }
 }
