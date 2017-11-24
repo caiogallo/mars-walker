@@ -1,10 +1,18 @@
 package com.caiogallo.azul.marswalker.engine;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+
 /**
  * @author caio
  * @since 0.0.1
  */
+@Component()
+@Scope(value="request", proxyMode= ScopedProxyMode.TARGET_CLASS)
 public class Robot {
+    public static final int INITIAL_XY_POSITION = 0;
+
     public enum Direction{
         NORTH(0, 'N'), EAST(1, 'E'), SOUTH(2, 'S'), WEST(3, 'W');
 
@@ -33,10 +41,10 @@ public class Robot {
         LEFT, RIGHT;
     }
 
-    private int x, y = 0;
+    private int x, y = INITIAL_XY_POSITION;
     private Direction direction = Direction.NORTH;
 
-    public void move() {
+    public boolean move() {
         switch (direction) {
             case NORTH:
                     y++;
@@ -51,6 +59,16 @@ public class Robot {
                     x++;
                 break;
         }
+
+        return validatePosition();
+    }
+
+    private boolean validatePosition(){
+        if (x >= Terrain.MIN_X_DISTANCE && x <= Terrain.MAX_X_DISTANCE &&
+                y >= Terrain.MIN_X_DISTANCE && y <= Terrain.MAX_X_DISTANCE){
+            return true;
+        }
+        return false;
     }
 
     public void turn(Turn turn) {
