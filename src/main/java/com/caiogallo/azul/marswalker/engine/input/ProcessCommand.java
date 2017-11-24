@@ -1,6 +1,7 @@
 package com.caiogallo.azul.marswalker.engine.input;
 
 import com.caiogallo.azul.marswalker.engine.Robot;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ProcessCommand {
+    private ValidateCommand validateCommand;
+
     public boolean process(String commands, Robot robot){
-        boolean validMovement = true;
+        boolean validMovement = validateCommand.validateInputPattern(commands);
         for(int i = 0; i < commands.length() && validMovement; i++){
             char command = commands.charAt(i);
             switch (command){
@@ -26,5 +29,10 @@ public class ProcessCommand {
             }
         }
         return validMovement;
+    }
+
+    @Autowired
+    public void setValidateCommand(ValidateCommand validateCommand) {
+        this.validateCommand = validateCommand;
     }
 }
