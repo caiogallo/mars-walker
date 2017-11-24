@@ -65,7 +65,7 @@ public class Robot {
 
     private boolean validatePosition(){
         if (x >= Terrain.MIN_X_DISTANCE && x <= Terrain.MAX_X_DISTANCE &&
-                y >= Terrain.MIN_X_DISTANCE && y <= Terrain.MAX_X_DISTANCE){
+                y >= Terrain.MIN_Y_DISTANCE && y <= Terrain.MAX_Y_DISTANCE){
             return true;
         }
         return false;
@@ -76,14 +76,14 @@ public class Robot {
         switch (turn) {
             case LEFT:
                 directionValue--;
-                if (directionValue < 0) {
-                    directionValue = 3;
+                if (directionValue < Direction.NORTH.value) {
+                    directionValue = Direction.WEST.value;
                 }
                 break;
             case RIGHT:
                 directionValue++;
-                if (directionValue > 3) {
-                    directionValue = 0;
+                if (directionValue > Direction.WEST.value) {
+                    directionValue = Direction.NORTH.value;
                 }
                 break;
         }
