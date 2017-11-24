@@ -56,4 +56,10 @@ public class ProcessCommandTest {
         boolean valid = processCommand.process("RMMMMMM", robot);
         Assert.assertEquals(false, valid);
     }
+
+    @Test
+    public void testSendInvalidChars(){
+        boolean valid = processCommand.process("AAAA", robot);
+        Assert.assertEquals(false, valid);
+    }
 }
