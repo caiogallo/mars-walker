@@ -21,24 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest/mars")
 public class RobotController {
 
-    private ValidateCommand validateCommand;
     private ProcessCommand processCommand;
     private Robot robot;
 
     @RequestMapping(method = RequestMethod.GET,
             value = "/{commands}", produces = MediaType.TEXT_PLAIN_VALUE)
-    public HttpEntity<String> receiveCommand(@PathVariable(value = "commands") String commands) {
+    public ResponseEntity<String> receiveCommand(@PathVariable(value = "commands") String commands) {
 
         boolean validCommand = processCommand.process(commands, robot);
         if (validCommand) {
             return new ResponseEntity<>(robot.toString(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-    @Autowired
-    public void setValidateCommand(ValidateCommand validateCommand) {
-        this.validateCommand = validateCommand;
     }
 
     @Autowired
