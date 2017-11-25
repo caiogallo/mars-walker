@@ -30,7 +30,7 @@ public class RobotController {
             return new ResponseEntity<>(robot.toString(), HttpStatus.OK);
         }
         return new ResponseEntity<>(
-                String.format("%d: %s",HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
+                String.format("%d %s",HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
                 HttpStatus.BAD_REQUEST);
     }
 

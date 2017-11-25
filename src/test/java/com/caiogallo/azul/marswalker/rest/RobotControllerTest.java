@@ -49,14 +49,14 @@ public class RobotControllerTest {
     public void testInvalidCharacter() throws Exception {
         ResponseEntity<String> response = robotController.receiveCommand("AAA");
         Assert.assertEquals(400, response.getStatusCode().value());
-        Assert.assertEquals("400: Bad Request", response.getBody());
+        Assert.assertEquals("400 Bad Request", response.getBody());
     }
 
     @Test
     public void testInvalidCommandPosition() throws Exception {
         ResponseEntity<String> response = robotController.receiveCommand("MMMMMMMMMMMM");
         Assert.assertEquals(400, response.getStatusCode().value());
-        Assert.assertEquals("400: Bad Request", response.getBody());
+        Assert.assertEquals("400 Bad Request", response.getBody());
     }
 
     @Test
