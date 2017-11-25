@@ -1,7 +1,6 @@
 package com.caiogallo.azul.marswalker.engine.input;
 
 import com.caiogallo.azul.marswalker.MarsWalkerApplication;
-import com.caiogallo.azul.marswalker.engine.input.ValidateCommand;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

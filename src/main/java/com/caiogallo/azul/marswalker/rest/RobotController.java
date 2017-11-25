@@ -1,10 +1,8 @@
 package com.caiogallo.azul.marswalker.rest;
 
-import com.caiogallo.azul.marswalker.engine.input.ProcessCommand;
 import com.caiogallo.azul.marswalker.engine.Robot;
-import com.caiogallo.azul.marswalker.engine.input.ValidateCommand;
+import com.caiogallo.azul.marswalker.engine.input.ProcessCommand;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

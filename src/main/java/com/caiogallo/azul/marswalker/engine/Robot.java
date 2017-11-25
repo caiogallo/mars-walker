@@ -41,7 +41,8 @@ public class Robot {
         LEFT, RIGHT;
     }
 
-    private int x, y = INITIAL_XY_POSITION;
+    private int x = INITIAL_XY_POSITION;
+    private int y = INITIAL_XY_POSITION;
     private Direction direction = Direction.NORTH;
 
     public boolean move() {
@@ -64,11 +65,12 @@ public class Robot {
     }
 
     private boolean validatePosition(){
+        boolean valid = false;
         if (x >= Terrain.MIN_X_DISTANCE && x <= Terrain.MAX_X_DISTANCE &&
                 y >= Terrain.MIN_Y_DISTANCE && y <= Terrain.MAX_Y_DISTANCE){
-            return true;
+            valid = true;
         }
-        return false;
+        return valid;
     }
 
     public void turn(Turn turn) {

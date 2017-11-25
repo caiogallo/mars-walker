@@ -1,8 +1,8 @@
 package com.caiogallo.azul.marswalker.engine.input;
 
-import com.caiogallo.azul.marswalker.listener.CustomTestExecutorListener;
 import com.caiogallo.azul.marswalker.MarsWalkerApplication;
 import com.caiogallo.azul.marswalker.engine.Robot;
+import com.caiogallo.azul.marswalker.listener.CustomTestExecutorListener;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

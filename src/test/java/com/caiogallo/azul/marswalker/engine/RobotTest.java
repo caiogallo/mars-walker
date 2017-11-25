@@ -3,7 +3,6 @@ package com.caiogallo.azul.marswalker.engine;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.test.context.TestPropertySource;
 
 public class RobotTest {
     Robot robot;
