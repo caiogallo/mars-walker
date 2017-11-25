@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ProcessCommand {
-    private ValidateCommand validateCommand;
+    private static final String REGEX_INPUT_COMMANDS = "[RLM]+";
 
     public boolean process(String commands, Robot robot){
-        boolean validMovement = validateCommand.validateInputPattern(commands);
+        boolean validMovement = validateInputPattern(commands);
         for(int i = 0; i < commands.length() && validMovement; i++){
             char command = commands.charAt(i);
             switch (command){
@@ -31,8 +31,10 @@ public class ProcessCommand {
         return validMovement;
     }
 
-    @Autowired
-    public void setValidateCommand(ValidateCommand validateCommand) {
-        this.validateCommand = validateCommand;
+
+
+    public boolean validateInputPattern(String commands){
+        return commands.matches(REGEX_INPUT_COMMANDS);
     }
+
 }
