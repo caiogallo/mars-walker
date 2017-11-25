@@ -1,5 +1,7 @@
 package com.caiogallo.azul.marswalker.engine;
 
+import com.caiogallo.azul.marswalker.engine.enumerations.Direction;
+import com.caiogallo.azul.marswalker.engine.enumerations.Turn;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -12,34 +14,6 @@ import org.springframework.stereotype.Component;
 @Scope(value="request", proxyMode= ScopedProxyMode.TARGET_CLASS)
 public class Robot {
     public static final int INITIAL_XY_POSITION = 0;
-
-    public enum Direction{
-        NORTH(0, 'N'), EAST(1, 'E'), SOUTH(2, 'S'), WEST(3, 'W');
-
-        private int value;
-        private char abbreviation;
-
-        Direction(int value, char abbreviation) {
-            this.value = value;
-            this.abbreviation = abbreviation;
-        }
-
-        public int getValue(){
-            return this.value;
-        }
-
-        public char getAbbreviation() {
-            return this.abbreviation;
-        }
-
-        public static Direction fromInteger(int value){
-            return values()[value];
-        }
-    }
-
-    public enum Turn{
-        LEFT, RIGHT;
-    }
 
     private int x = INITIAL_XY_POSITION;
     private int y = INITIAL_XY_POSITION;
@@ -74,18 +48,18 @@ public class Robot {
     }
 
     public void turn(Turn turn) {
-        int directionValue = direction.value;
+        int directionValue = direction.getValue();
         switch (turn) {
             case LEFT:
                 directionValue--;
-                if (directionValue < Direction.NORTH.value) {
-                    directionValue = Direction.WEST.value;
+                if (directionValue < Direction.NORTH.getValue()) {
+                    directionValue = Direction.WEST.getValue();
                 }
                 break;
             case RIGHT:
                 directionValue++;
-                if (directionValue > Direction.WEST.value) {
-                    directionValue = Direction.NORTH.value;
+                if (directionValue > Direction.WEST.getValue()) {
+                    directionValue = Direction.NORTH.getValue();
                 }
                 break;
         }
@@ -106,6 +80,6 @@ public class Robot {
 
     @Override
     public String toString(){
-        return String.format("(%d,%d,%c)", x, y, direction.getAbbreviation());
+        return String.format("(%d, %d, %c)", x, y, direction.getAbbreviation());
     }
 }

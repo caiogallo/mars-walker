@@ -35,69 +35,69 @@ public class RobotControllerTest {
     public void testValidCommand() throws Exception {
         ResponseEntity<String> response = robotController.receiveCommand("MMRMMRMM");
         Assert.assertEquals(200, response.getStatusCode().value());
-        Assert.assertEquals("(2,0,S)", response.getBody());
+        Assert.assertEquals("(2, 0, S)", response.getBody());
     }
 
     @Test
     public void testValidMMLCommand() throws Exception {
         ResponseEntity<String> response = robotController.receiveCommand("MML");
         Assert.assertEquals(200, response.getStatusCode().value());
-        Assert.assertEquals("(0,2,W)", response.getBody());
+        Assert.assertEquals("(0, 2, W)", response.getBody());
     }
 
     @Test
     public void testInvalidCharacter() throws Exception {
         ResponseEntity<String> response = robotController.receiveCommand("AAA");
         Assert.assertEquals(400, response.getStatusCode().value());
-        Assert.assertEquals(null, response.getBody());
+        Assert.assertEquals("400: Bad Request", response.getBody());
     }
 
     @Test
     public void testInvalidCommandPosition() throws Exception {
         ResponseEntity<String> response = robotController.receiveCommand("MMMMMMMMMMMM");
         Assert.assertEquals(400, response.getStatusCode().value());
-        Assert.assertEquals(null, response.getBody());
+        Assert.assertEquals("400: Bad Request", response.getBody());
     }
 
     @Test
     public void testTurnLeftToWest() throws Exception{
         ResponseEntity<String> responseEntity = robotController.receiveCommand("L");
         Assert.assertEquals(200, responseEntity.getStatusCode().value());
-        Assert.assertEquals("(0,0,W)", responseEntity.getBody());
+        Assert.assertEquals("(0, 0, W)", responseEntity.getBody());
     }
 
     @Test
     public void testTurnLeftToSouth() throws Exception{
         ResponseEntity<String> responseEntity = robotController.receiveCommand("LL");
         Assert.assertEquals(200, responseEntity.getStatusCode().value());
-        Assert.assertEquals("(0,0,S)", responseEntity.getBody());
+        Assert.assertEquals("(0, 0, S)", responseEntity.getBody());
     }
 
     @Test
     public void testTurnLeftToEast() throws Exception{
         ResponseEntity<String> responseEntity = robotController.receiveCommand("LLL");
         Assert.assertEquals(200, responseEntity.getStatusCode().value());
-        Assert.assertEquals("(0,0,E)", responseEntity.getBody());
+        Assert.assertEquals("(0, 0, E)", responseEntity.getBody());
     }
 
     @Test
     public void testTurnRightToEast() throws Exception{
         ResponseEntity<String> responseEntity = robotController.receiveCommand("R");
         Assert.assertEquals(200, responseEntity.getStatusCode().value());
-        Assert.assertEquals("(0,0,E)", responseEntity.getBody());
+        Assert.assertEquals("(0, 0, E)", responseEntity.getBody());
     }
 
     @Test
     public void testTurnRightToSouth() throws Exception{
         ResponseEntity<String> responseEntity = robotController.receiveCommand("RR");
         Assert.assertEquals(200, responseEntity.getStatusCode().value());
-        Assert.assertEquals("(0,0,S)", responseEntity.getBody());
+        Assert.assertEquals("(0, 0, S)", responseEntity.getBody());
     }
 
     @Test
     public void testTurnRightToWest() throws Exception{
         ResponseEntity<String> responseEntity = robotController.receiveCommand("RRR");
         Assert.assertEquals(200, responseEntity.getStatusCode().value());
-        Assert.assertEquals("(0,0,W)", responseEntity.getBody());
+        Assert.assertEquals("(0, 0, W)", responseEntity.getBody());
     }
 }

@@ -1,7 +1,7 @@
 package com.caiogallo.azul.marswalker.engine.input;
 
 import com.caiogallo.azul.marswalker.engine.Robot;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.caiogallo.azul.marswalker.engine.enumerations.Turn;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,10 +21,10 @@ public class ProcessCommand {
                     validMovement = robot.move();
                     break;
                 case 'L':
-                    robot.turn(Robot.Turn.LEFT);
+                    robot.turn(Turn.LEFT);
                     break;
                 case 'R':
-                    robot.turn(Robot.Turn.RIGHT);
+                    robot.turn(Turn.RIGHT);
                     break;
             }
         }
